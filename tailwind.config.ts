@@ -12,11 +12,14 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
         blue:{
-          ligth: "#87c8f9",
+          ligth: "#0076cf",
           DEFAULT: "#0166B1"
         },
         gray:{
           DEFAULT: "#6F6F6F"
+        },
+        black:{
+          DEFAULT: "#0a0a0a;"
         }
       },
     },
