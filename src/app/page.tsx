@@ -9,7 +9,7 @@ export default function Home() {
       <section>
         <div className='h-screen w-screen overflow-hidden relative flex items-center justify-start'>
           <VideoBackground/>
-          <div className='absolute z-50 text-white w-full flex justify-center px-6 md:px4 pt-6 md:pt-0'>
+          <div className='absolute z-30 text-white w-full flex justify-center px-6 md:px4 pt-6 md:pt-0'>
             <div className='container flex flex-col gap-4 md:gap-12'>
               <div className='max-w-[500px] flex flex-col gap-6'>
                 <h1 className='text-white text-6xl font-bold leading-[70px]'>¡Es tu momento de ganar con <span className='bg-blue px-2'>BMW!</span></h1>

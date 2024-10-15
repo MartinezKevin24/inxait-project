@@ -15,7 +15,7 @@ import { useRouter } from 'next/navigation'
 import { PageRoutes } from 'constants/PageRoutes'
 
 export interface RegistratinFormProps{
-  departments: Department[]
+  departments: Department[] | null
 }
 
 export default function RegistratinForm({departments}: RegistratinFormProps) {
@@ -46,7 +46,7 @@ export default function RegistratinForm({departments}: RegistratinFormProps) {
       .email('El formato del correo electrónico es inválido'),
   });
   const { push } = useRouter()
-  const [cities, setCities] = useState<City[] | undefined>(undefined);
+  const [cities, setCities] = useState<City[] | null>(null);
   const setUser = useSetRecoilState(userState)
 
   const initalValues = {
@@ -62,15 +62,24 @@ export default function RegistratinForm({departments}: RegistratinFormProps) {
   }
 
   const handleSubmit = (values: User) =>{
+
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let newCode = '';
+
     for (let i = 0; i < 8; i++) {
       newCode += characters.charAt(Math.floor(Math.random() * characters.length));
     }
+
+    const city = cities?.find((city)=>city.id === parseInt(values?.city))?.name;
+    const department = departments?.find((department)=>department.id === parseInt(values?.department))?.name
+
     setUser({
       ...values,
+      department: department ?? values.department,
+      city: city ?? values.city,
       code: newCode,
     })
+
     push(PageRoutes.registration_complete);
   }
 

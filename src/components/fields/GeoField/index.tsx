@@ -5,10 +5,10 @@ import React from 'react'
 interface FormFieldProps{
   name: string,
   placeholder: string,
-  options?: {
+  options: {
     id: number,
     name: string
-  }[]
+  }[] | null
 }
 
 export default function FormField({name, placeholder, options}: FormFieldProps) {
