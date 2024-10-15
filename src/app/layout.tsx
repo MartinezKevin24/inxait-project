@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "icons/icomoon/style.css"
-import Header from "components/Layout/Header";
-import RecoilWrapper from 'components/Layout/RecoilWrapper'
+import Header from "components/layout/Header";
+import RecoilWrapper from 'components/layout/RecoilWrapper'
 
 export const metadata: Metadata = {
   title: "BMW | Participa en el sorteo exclusivo de BMW",
