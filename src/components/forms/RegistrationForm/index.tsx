@@ -13,6 +13,7 @@ import userState from 'atoms/userState'
 import { useSetRecoilState } from 'recoil'
 import { useRouter } from 'next/navigation'
 import { PageRoutes } from 'constants/PageRoutes'
+import HabeasDataField from 'components/fields/HabeasDataField'
 
 export interface RegistratinFormProps{
   departments: Department[] | null
@@ -44,6 +45,8 @@ export default function RegistratinForm({departments}: RegistratinFormProps) {
     email: Yup.string()
       .required('El correo electrónico es obligatorio')
       .email('El formato del correo electrónico es inválido'),
+    habeas_data: Yup.boolean()
+      .oneOf([true], 'La autorización de datos personales es obligatoria'),
   });
   const { push } = useRouter()
   const [cities, setCities] = useState<City[] | null>(null);
@@ -58,7 +61,8 @@ export default function RegistratinForm({departments}: RegistratinFormProps) {
     city: "",
     mobile: "",
     email: "",
-    code: ""
+    code: "",
+    habeas_data: false
   }
 
   const handleSubmit = (values: User) =>{
@@ -109,6 +113,7 @@ export default function RegistratinForm({departments}: RegistratinFormProps) {
           </div>
           <FormField name='mobile' placeholder='Numero de celular'/>
           <FormField name='email' placeholder='Email'/>
+          <HabeasDataField/>
           <button className='bg-blue py-4 text-xl uppercase font-bold hover:bg-blue-ligth rounded-md md:block hidden' type='submit'>
             Registrarse
           </button>

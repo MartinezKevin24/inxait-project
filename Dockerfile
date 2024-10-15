@@ -7,7 +7,7 @@ WORKDIR /inxait_project
 # Copia el archivo package.json e instala las dependencias
 COPY package.json ./
 COPY yarn.lock ./
-RUN yarn install --frozen-lockfile
+RUN yarn install
 
 # Copia el resto de los archivos de la aplicación
 COPY . .
@@ -19,4 +19,4 @@ RUN yarn build
 EXPOSE 3000
 
 # Comando para ejecutar la aplicación cuando el contenedor se inicia
-CMD ["yarn", "start"]
+CMD ["yarn","start"]
