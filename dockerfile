@@ -7,7 +7,7 @@ WORKDIR /inxait_project
 # Copia el archivo package.json e instala las dependencias
 COPY package.json ./
 COPY yarn.lock ./
-RUN yarn install
+RUN yarn install --frozen-lockfile
 
 # Copia el resto de los archivos de la aplicación
 COPY . .
