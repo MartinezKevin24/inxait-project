@@ -29,7 +29,7 @@ export default function Header() {
           ))}
         </ul>
         <div className='flex justify-center py-2 col-span-1'>
-          <Image src={'/images/bmw_logo.svg'} width={80} height={80} alt='BMW logo' className='md:w-20 w-10'/>
+          <Image src={'/images/bmw.svg'} width={80} height={80} alt='BMW logo' className='md:w-20 w-10'/>
         </div>
         <Link href={PageRoutes.registration} className='md:flex items-center justify-end hidden col-span-1'>
           <div className='md:block hidden'>

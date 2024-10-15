@@ -19,4 +19,4 @@ RUN yarn build
 EXPOSE 3000
 
 # Comando para ejecutar la aplicación cuando el contenedor se inicia
-ENTRYPOINT ["yarn", "start"]
+CMD ["yarn", "start"]
