@@ -7,7 +7,12 @@ import { Department } from 'models/geoModels/department'
 import GeoField from 'components/fields/GeoField'
 import { getCities } from 'services/geoRequest'
 import { City } from 'models/geoModels/city'
+import { User } from 'models/user/user'
 import * as Yup from 'yup'
+import userState from 'atoms/userState'
+import { useSetRecoilState } from 'recoil'
+import { useRouter } from 'next/navigation'
+import { PageRoutes } from 'constants/PageRoutes'
 
 export interface RegistratinFormProps{
   departments: Department[]
@@ -40,21 +45,33 @@ export default function RegistratinForm({departments}: RegistratinFormProps) {
       .required('El correo electrónico es obligatorio')
       .email('El formato del correo electrónico es inválido'),
   });
+  const { push } = useRouter()
   const [cities, setCities] = useState<City[] | undefined>(undefined);
+  const setUser = useSetRecoilState(userState)
 
   const initalValues = {
     names: "",
     last_names: "",
-    type_id: "",
+    type_id: "CC",
     id: "",
     department: "",
     city: "",
     mobile: "",
     email: "",
+    code: ""
   }
 
-  const handleSubmit = (values:unknown) =>{
-    console.log(values)
+  const handleSubmit = (values: User) =>{
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let newCode = '';
+    for (let i = 0; i < 8; i++) {
+      newCode += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    setUser({
+      ...values,
+      code: newCode,
+    })
+    push(PageRoutes.registration_complete);
   }
 
   const handleChange = async (e: React.ChangeEvent<HTMLFormElement>) => {
